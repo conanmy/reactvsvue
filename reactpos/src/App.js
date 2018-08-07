@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { Switch, Route, NavLink } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
+import Pos from './components/Pos';
+import Products from './components/Products';
 
 class App extends Component {
   render() {
@@ -10,8 +13,15 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
+        <div className="menu">
+          <NavLink exact to="/" activeClassName="active">Pos</NavLink>
+          <NavLink to="/products" activeClassName="active">Products</NavLink>
+        </div>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          <Switch>
+            <Route exact path="/" component={Pos} />
+            <Route path="/products" component={Products} />
+          </Switch>
         </p>
       </div>
     );
