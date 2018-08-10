@@ -17,12 +17,12 @@ class App extends Component {
           <NavLink exact to="/" activeClassName="active">Pos</NavLink>
           <NavLink to="/products" activeClassName="active">Products</NavLink>
         </div>
-        <p className="App-intro">
+        <div className="App-intro">
           <Switch>
             <Route exact path="/" component={Pos} />
             <Route path="/products" component={Products} />
           </Switch>
-        </p>
+        </div>
       </div>
     );
   }
