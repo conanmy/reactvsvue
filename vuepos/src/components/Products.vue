@@ -1,6 +1,6 @@
 <template>
-  <div className="product row">
-    <div className="product-list col-6">
+  <div class="product row">
+    <div class="product-list col-6">
       <ul>
         <router-link v-bind:key="product.productID" v-for="product in products" :to="'/products/' + product.productID" active-class="active">
           <li>{{product.productName}}</li>

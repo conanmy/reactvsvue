@@ -15,13 +15,26 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+body {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 0;
+  font-family: sans-serif;
 }
+.menu {
+  height: 30px;
+  line-height: 30px;
+  background: burlywood;
+}
+.menu a {
+  padding: 0 20px;
+}
+.menu a:active {
+  text-decoration: none;
+}
+.menu a.active {
+  color: white;
+}
+@import './assets/styles/flexboxgrid'
 </style>
