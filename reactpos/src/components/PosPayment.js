@@ -17,7 +17,6 @@ class PosPayment extends Component {
   }
 
   onSubmit() {
-    let that = this
     axios.post('/bill', {
       paymentMethod: this.state.paymentMethod,
       products: this.props.products,
