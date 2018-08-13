@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, NavLink } from 'react-router-dom';
 import logo from './logo.svg';
-import './App.css';
+import './app.scss';
 import Pos from './components/Pos';
 import Products from './components/Products';
 

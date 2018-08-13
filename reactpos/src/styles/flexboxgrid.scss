@@ -1,0 +1,15 @@
+.row {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    flex-basis: $i * 100% / 12;
+    max-width: $i * 100% / 12;
+  }
+}
