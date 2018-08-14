@@ -39,7 +39,7 @@ export default {
         products: that.products,
         priceTotal: getTotal(that.products)
       }).then(function() {
-        window.alert('Success')
+        that.$emit('submit-success')
       })
     }
   }

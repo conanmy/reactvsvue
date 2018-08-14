@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <pos-payment v-bind:products="products"></pos-payment>
+    <pos-payment v-bind:products="products" v-on:submit-success="clearProductList"></pos-payment>
   </div>
 </template>
 
@@ -45,6 +45,9 @@ export default {
         that.$data.products = products
         that.$data.productBarcode = ''
       })
+    },
+    clearProductList() {
+      this.$data.products = []
     }
   }
 }
