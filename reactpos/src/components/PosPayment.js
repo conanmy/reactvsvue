@@ -13,16 +13,18 @@ class PosPayment extends Component {
   }
 
   static propTypes = {
-    products: PropTypes.array.isRequired
+    products: PropTypes.array.isRequired,
+    clearProductList: PropTypes.func.isRequired
   }
 
   onSubmit() {
+    let that = this
     axios.post('/bill', {
-      paymentMethod: this.state.paymentMethod,
-      products: this.props.products,
-      priceTotal: getTotal(this.props.products)
+      paymentMethod: that.state.paymentMethod,
+      products: that.props.products,
+      priceTotal: getTotal(that.props.products)
     }).then(function() {
-      window.alert('Success')
+      that.props.clearProductList()
     })
   }
 

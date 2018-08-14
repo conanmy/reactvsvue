@@ -13,6 +13,7 @@ class Pos extends Component {
     this.onProductBarcodeChange = this.onProductBarcodeChange.bind(this)
     this.onProductBarcodeKeyup = this.onProductBarcodeKeyup.bind(this)
     this.checkoutProduct = this.checkoutProduct.bind(this)
+    this.clearProductList = this.clearProductList.bind(this)
   }
 
   onProductBarcodeChange(event) {
@@ -32,6 +33,10 @@ class Pos extends Component {
       products.push(Object.assign({}, response.data, {quantity: 1}))
       that.setState({products: products, productBarcode: ''})
     })
+  }
+
+  clearProductList() {
+    this.setState({products: []})
   }
 
   render() {
@@ -59,7 +64,7 @@ class Pos extends Component {
             }
           </div>
         </div>
-        <PosPayment products={that.state.products} />
+        <PosPayment products={that.state.products} clearProductList={that.clearProductList} />
       </div>
     )
   }
