@@ -12,21 +12,16 @@
 </template>
 
 <script>
-import * as axios from 'axios'
+import { mapState } from 'vuex'
 import { getProductById } from '../utility'
 
 export default {
   name: 'Products',
-  data: function() {
-    return {
-      products: []
-    }
-  },
-  created: function() {
-    let that = this
-    axios.get('/products').then(function(response) {
-      that.$data.products = response.data;
-    })
+  computed: mapState({
+    products: state => state.products.all
+  }),
+  created() {
+    this.$store.dispatch('loadProducts')
   },
   methods: {
     getProductById

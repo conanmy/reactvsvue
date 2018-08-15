@@ -15,12 +15,12 @@
         </div>
       </div>
     </div>
-    <pos-payment v-bind:products="products" v-on:submit-success="clearProductList"></pos-payment>
+    <pos-payment v-bind:total="total" v-on:submit="submitCheckout"></pos-payment>
   </div>
 </template>
 
 <script>
-import * as axios from 'axios'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import PosPayment from './PosPayment'
 import { getProductTotal } from '../utility'
 
@@ -31,24 +31,26 @@ export default {
   },
   data: function() {
     return {
-      productBarcode: '',
-      products: []
+      productBarcode: ''
     }
+  },
+  computed: {
+    ...mapState({
+      products: state => state.pos.products
+    }),
+    ...mapGetters([
+      'total'
+    ])
   },
   methods: {
     getProductTotal,
     checkoutProduct() {
-      let that = this
-      axios.get('/products?productBarcode=' + that.$data.productBarcode).then(function(response) {
-        let products = that.$data.products
-        products.push(Object.assign({}, response.data, {quantity: 1}))
-        that.$data.products = products
-        that.$data.productBarcode = ''
-      })
+      this.$store.dispatch('checkoutProduct', this.$data.productBarcode)
+      this.$data.productBarcode = ''
     },
-    clearProductList() {
-      this.$data.products = []
-    }
+    ...mapActions([
+      'submitCheckout'
+    ])
   }
 }
 </script>

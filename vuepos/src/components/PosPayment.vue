@@ -1,6 +1,6 @@
 <template>
   <div class="pos-payment col-4">
-    <p>Total: {{getTotal(products)}}</p>
+    <p>Total: {{total}}</p>
     <p>Payment method</p>
     <p>
       <input id="payment-method-eftpos" name="payment-method" type="radio"
@@ -17,13 +17,12 @@
 </template>
 
 <script>
-import * as axios from 'axios'
 import { getTotal } from '../utility'
 
 export default {
   name: 'PosPayment',
   props: {
-    products: Array
+    total: Number
   },
   data: function() {
     return {
@@ -33,14 +32,7 @@ export default {
   methods: {
     getTotal,
     onSubmit() {
-      let that = this
-      axios.post('/bill', {
-        paymentMethod: that.$data.paymentMethod,
-        products: that.products,
-        priceTotal: getTotal(that.products)
-      }).then(function() {
-        that.$emit('submit-success')
-      })
+      this.$emit('submit', this.$data.paymentMethod)
     }
   }
 }
