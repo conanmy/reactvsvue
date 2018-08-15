@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import * as axios from 'axios'
+import PropTypes from 'prop-types'
 import { getProductTotal } from '../utility'
 import PosPayment from './PosPayment'
 
@@ -7,13 +7,16 @@ class Pos extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      productBarcode: '',
-      products: []
+      productBarcode: ''
     }
     this.onProductBarcodeChange = this.onProductBarcodeChange.bind(this)
     this.onProductBarcodeKeyup = this.onProductBarcodeKeyup.bind(this)
-    this.checkoutProduct = this.checkoutProduct.bind(this)
-    this.clearProductList = this.clearProductList.bind(this)
+  }
+
+  static propTypes = {
+    products: PropTypes.array.isRequired,
+    checkoutProduct: PropTypes.func.isRequired,
+    submitCheckout: PropTypes.func.isRequired
   }
 
   onProductBarcodeChange(event) {
@@ -22,21 +25,9 @@ class Pos extends Component {
 
   onProductBarcodeKeyup(event) {
     if (event.keyCode === 13) {
-      this.checkoutProduct(this.state.productBarcode)
+      this.props.checkoutProduct(this.state.productBarcode)
+      this.setState({productBarcode: ''})
     }
-  }
-
-  checkoutProduct(productBarcode) {
-    let that = this
-    axios.get('/products?productBarcode=' + productBarcode).then(function(response) {
-      let products = that.state.products
-      products.push(Object.assign({}, response.data, {quantity: 1}))
-      that.setState({products: products, productBarcode: ''})
-    })
-  }
-
-  clearProductList() {
-    this.setState({products: []})
   }
 
   render() {
@@ -51,7 +42,7 @@ class Pos extends Component {
               <div className="col-6">Product Name</div><div className="col-2">Price</div><div className="col-2">Quantity</div><div className="col-2">Total</div>
             </div>
             {
-              that.state.products.map(function(product) {
+              that.props.products.map(function(product) {
                 return (
                   <div key={product.productID} className="row">
                     <div className="col-6">{product.productName}</div>
@@ -64,7 +55,7 @@ class Pos extends Component {
             }
           </div>
         </div>
-        <PosPayment products={that.state.products} clearProductList={that.clearProductList} />
+        <PosPayment total={that.props.total} submitCheckout={that.props.submitCheckout} />
       </div>
     )
   }

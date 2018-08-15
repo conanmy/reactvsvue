@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { getTotal } from '../utility'
-import * as axios from 'axios'
 
 class PosPayment extends Component {
   constructor(props) {
@@ -13,27 +11,19 @@ class PosPayment extends Component {
   }
 
   static propTypes = {
-    products: PropTypes.array.isRequired,
-    clearProductList: PropTypes.func.isRequired
+    total: PropTypes.number.isRequired,
+    submitCheckout: PropTypes.func.isRequired
   }
 
   onSubmit() {
-    let that = this
-    axios.post('/bill', {
-      paymentMethod: that.state.paymentMethod,
-      products: that.props.products,
-      priceTotal: getTotal(that.props.products)
-    }).then(function() {
-      that.props.clearProductList()
-    })
+    this.props.submitCheckout(this.state.paymentMethod)
   }
 
   render() {
     let that = this
-    let total = getTotal(that.props.products)
     return (
       <div className="pos-payment col-4">
-        <p>Total: {total}</p>
+        <p>Total: {that.props.total}</p>
         <p>Payment method</p>
         <p>
           <input id="payment-method-eftpos" name="payment-method" type="radio"

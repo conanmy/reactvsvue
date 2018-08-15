@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Switch, Route, NavLink } from 'react-router-dom';
 import logo from './logo.svg';
 import './app.scss';
-import Pos from './components/Pos';
-import Products from './components/Products';
+import PosContainer from './containers/PosContainer'
+import ProductsContainer from './containers/ProductsContainer'
 
 class App extends Component {
   render() {
@@ -19,8 +19,8 @@ class App extends Component {
         </div>
         <div className="App-intro">
           <Switch>
-            <Route exact path="/" component={Pos} />
-            <Route path="/products" component={Products} />
+            <Route exact path="/" component={PosContainer} />
+            <Route path="/products" component={ProductsContainer} />
           </Switch>
         </div>
       </div>

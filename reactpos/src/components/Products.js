@@ -1,22 +1,18 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Route, NavLink } from 'react-router-dom'
 import ProductDetail from './ProductDetail'
-import * as axios from 'axios'
 import { getProductById } from '../utility'
 
 class Products extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      products: []
-    }
+
+  static propTypes = {
+    products: PropTypes.array.isRequired,
+    loadProducts: PropTypes.func.isRequired
   }
 
   componentWillMount() {
-    let that = this
-    axios.get('/products').then(function(response) {
-      that.setState({products: response.data})
-    })
+    this.props.loadProducts()
   }
 
   render() {
@@ -26,7 +22,7 @@ class Products extends Component {
         <div className="product-list col-6">
           <ul>
             {
-              that.state.products.map(function(product) {
+              that.props.products.map(function(product) {
                 return (
                   <NavLink to={that.props.match.path + '/' + product.productID} activeClassName="active" key={product.productID}>
                     <li>{product.productName}</li>
@@ -37,7 +33,7 @@ class Products extends Component {
           </ul>
         </div>
         <Route path={that.props.match.path + '/:productId'} render={(props)=>{
-          return <ProductDetail product={getProductById(that.state.products, props.match.params.productId)} />
+          return <ProductDetail product={getProductById(that.props.products, props.match.params.productId)} />
         }} />
       </div>
     );
