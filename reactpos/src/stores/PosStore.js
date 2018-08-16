@@ -30,6 +30,23 @@ export function submitCheckout(paymentMethod) {
   }
 }
 
+export function deepFreeze(obj) {
+  // Retrieve the property names defined on obj
+  var propNames = Object.getOwnPropertyNames(obj);
+
+  // Freeze properties before freezing self
+  propNames.forEach(function(name) {
+    var prop = obj[name];
+
+    // Freeze prop if it is an object
+    if (typeof prop === 'object' && prop !== null)
+      deepFreeze(prop);
+  });
+
+  // Freeze self (no-op if already frozen)
+  return Object.freeze(obj);
+}
+
 // reducer
 export default function(state = {
   products: [],
@@ -37,11 +54,10 @@ export default function(state = {
 }, action) {
   switch (action.type) {
     case POS_CHECKOUT_PRODUCT:
-      let products = state.products
-      products.push(Object.assign({}, action.payload, {quantity: 1}))
-      return Object.assign({}, state, {
+      let products = [...state.products, Object.assign({}, action.payload, {quantity: 1})]
+      return deepFreeze(Object.assign({}, state, {
         products: products, total: getTotal(products)
-      })
+      }))
     case POS_CLEAR_PRODUCTS:
       return Object.assign({}, state, {
         products: [], total: 0

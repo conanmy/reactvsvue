@@ -5,9 +5,7 @@ export function getProductById(products, productId) {
 }
 
 export function getProductTotal(product) {
-  let total = Math.round(Number(product.salePrice) * Number(product.quantity) * 100) / 100
-  product.quantity = 0
-  return total
+  return Math.round(Number(product.salePrice) * Number(product.quantity) * 100) / 100
 }
 
 export function getTotal(products) {
