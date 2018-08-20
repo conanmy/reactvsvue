@@ -18,4 +18,12 @@ body {
 .menu a.active {
   color: white;
 }
+.button {
+  padding: 3px 12px;
+  background-color: skyblue;
+  cursor: pointer;
+}
+.pos-payment__total {
+  font-size: 40px;
+}
 @import './styles/flexboxgrid'

@@ -38,6 +38,7 @@ class Pos extends Component {
         <div className="pos-checkout col-8">
           <p><label>Product Barcode</label><input type="text" value={that.state.productBarcode} onChange={that.onProductBarcodeChange} onKeyUp={that.onProductBarcodeKeyup} /></p>
           <p>Barcode examples: 6928394901243, 774471033330, 9404216045205</p>
+          <p>Use "Enter" to trigger search</p>
           <div className="pos__checkout__table">
             <div className="row thead">
               <div className="col-6">Product Name</div><div className="col-2">Price</div><div className="col-2">Quantity</div><div className="col-2">Total</div>
