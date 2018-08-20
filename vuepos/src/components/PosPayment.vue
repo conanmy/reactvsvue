@@ -12,7 +12,7 @@
         value="cash" v-model="paymentMethod" />
       <label htmlFor="payment-method-cash">Cash</label>
     </p>
-    <p><span class="button" v-on:click="onSubmit">Submit</span></p>
+    <p><span class="submit-button button" v-on:click="onSubmit">Submit</span></p>
   </div>
 </template>
 

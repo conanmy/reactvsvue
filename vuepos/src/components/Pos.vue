@@ -7,7 +7,7 @@
         <div class="row thead">
           <div class="col-6">Product Name</div><div class="col-2">Price</div><div class="col-2">Quantity</div><div class="col-2">Total</div>
         </div>
-        <div v-bind:key="product.productID" v-for="product in products" class="row">
+        <div v-bind:key="product.productID" v-for="product in products" class="product-row row">
           <div class="col-6">{{product.productName}}</div>
           <div class="col-2">{{product.salePrice}}</div>
           <div class="col-2">{{product.quantity}}</div>
