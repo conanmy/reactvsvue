@@ -35,7 +35,7 @@ class PosPayment extends Component {
             checked={that.state.paymentMethod === 'cash'} onChange={()=>that.setState({paymentMethod: 'cash'})} />
           <label htmlFor="payment-method-cash">Cash</label>
         </p>
-        <p><span className="button" onClick={that.onSubmit}>Submit</span></p>
+        <p><span className="submit-button button" onClick={that.onSubmit}>Submit</span></p>
       </div>
     );
   }

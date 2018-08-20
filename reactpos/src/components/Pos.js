@@ -14,6 +14,7 @@ class Pos extends Component {
   }
 
   static propTypes = {
+    total: PropTypes.number.isRequired,
     products: PropTypes.array.isRequired,
     checkoutProduct: PropTypes.func.isRequired,
     submitCheckout: PropTypes.func.isRequired
@@ -44,7 +45,7 @@ class Pos extends Component {
             {
               that.props.products.map(function(product) {
                 return (
-                  <div key={product.productID} className="row">
+                  <div key={product.productID} className="product-row row">
                     <div className="col-6">{product.productName}</div>
                     <div className="col-2">{product.salePrice}</div>
                     <div className="col-2">{product.quantity}</div>
