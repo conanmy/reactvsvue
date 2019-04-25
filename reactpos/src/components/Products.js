@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Route, NavLink } from 'react-router-dom'
+import Route from '../myrouter/Route'
+import NavLink from '../myrouter/NavLink'
 import ProductDetail from './ProductDetail'
 import { getProductById } from '../utility'
 
@@ -32,9 +33,6 @@ class Products extends Component {
             }
           </ul>
         </div>
-        <Route path={that.props.match.path + '/:productId'} render={(props)=>{
-          return <ProductDetail product={getProductById(that.props.products, props.match.params.productId)} />
-        }} />
       </div>
     );
   }

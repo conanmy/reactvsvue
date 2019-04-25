@@ -4,7 +4,7 @@ export const MyRouterContext = React.createContext()
 
 export const history = createBrowserHistory()
 export default function(props) {
-    let [ location, setLocation ] = useState()
+    let [ location, setLocation ] = useState(history.location)
 
     useEffect(() => {
         return history.listen((location, action) => {

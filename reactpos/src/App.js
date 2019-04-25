@@ -19,7 +19,8 @@ class App extends Component {
           <NavLink to="/products">Products</NavLink>
         </div>
         <div className="App-intro">
-          <Route path="/" component={PosContainer} />
+          <Route path="/" component={PosContainer} /> 
+          <Route path="/products" component={ProductsContainer} />
         </div>
       </div>
     );
