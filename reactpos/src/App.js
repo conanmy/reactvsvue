@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { Switch, Route, NavLink } from 'react-router-dom';
-import logo from './logo.svg';
+import React, { Component } from 'react'
+import Route from './myrouter/Route'
+import NavLink from './myrouter/NavLink'
+import logo from './logo.svg'
 import './app.scss';
 import PosContainer from './containers/PosContainer'
 import ProductsContainer from './containers/ProductsContainer'
@@ -14,14 +15,11 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <div className="menu">
-          <NavLink exact to="/" activeClassName="active">Pos</NavLink>
-          <NavLink to="/products" activeClassName="active">Products</NavLink>
+          <NavLink to="/">Pos</NavLink>
+          <NavLink to="/products">Products</NavLink>
         </div>
         <div className="App-intro">
-          <Switch>
-            <Route exact path="/" component={PosContainer} />
-            <Route path="/products" component={ProductsContainer} />
-          </Switch>
+          <Route path="/" component={PosContainer} />
         </div>
       </div>
     );
